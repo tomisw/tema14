@@ -65,7 +65,11 @@ public class EjercicioHistorialPulsaciones extends Applet{
     }
 }
 class VentanaSecundaria extends Frame{
+    int x;
+    int y;
     VentanaSecundaria(int a, int x,int y,int alto, int ancho){
+        this.x=x;
+        this.y=y;
         if(a==0){
             setName("Boton Primero");
             setBounds(x+5,y+alto+85,ancho/2,alto/2);
@@ -88,6 +92,6 @@ class VentanaSecundaria extends Frame{
         
     }
     public void paint(Graphics g){
-        g.drawImage(getToolkit().getImage(getClass().getResource("imagen05.gif")), getWidth(), getHeight(), this);
+        g.drawImage(getToolkit().getImage(getClass().getResource("imagen05.gif")), x, y, getWidth(), getHeight(), this);
     }
 }
