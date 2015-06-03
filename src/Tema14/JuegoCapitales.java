@@ -47,24 +47,37 @@ public class JuegoCapitales extends Applet {
         b2 = new JButton("Borrar");
         b1.addActionListener(a = new ActionListener(){
             public void actionPerformed(ActionEvent e){
-                if(capitales[list1.getSelectedIndex()].equalsIgnoreCase(tf1.getText())){
-                    int j=0;
-                    for(int i=0;i<capitales.length;i++){
-                        if(i==list1.getSelectedIndex()){
-                            capitales[list1.getSelectedIndex()]=null;
-                            paises[list1.getSelectedIndex()]=null; 
-                        }
-                        else
+                if(list1.getSelectedIndex()!=-1){
+                    if(capitales[list1.getSelectedIndex()].equalsIgnoreCase(tf1.getText())){
+                        int j=0;
+                        String capitalesAux[]=new String[capitales.length-1];
+                        String paisesAux[]=new String[capitales.length-1];
+                        for(int i=0;i<capitales.length;i++){
+                            if(i==list1.getSelectedIndex()){
+                                capitales[list1.getSelectedIndex()]=null;
+                                paises[list1.getSelectedIndex()]=null;
+                                j++;
+                            }
+                            if(j<capitales.length){
+                                capitalesAux[i]=capitales[j];
+                                paisesAux[i]=paises[j];
+                            }
                             j++;
-                        capitales[i]=capitales[j];
-                        paises[i]=paises[j];
+                        }
+                        list1.setListData(paises);
+                        acierto();
+                        capitales=null;
+                        capitales= new String[paisesAux.length];
+                        capitales=capitalesAux;
+                        paises=null;
+                        paises= new String[paisesAux.length];
+                        paises=paisesAux;
+                        list1.setListData(paises);
                     }
-                    list1.setListData(paises);
-                    acierto();
+                    else
+                        error();
+                    }
                 }
-                else
-                    error();
-            }
         });
         b2.addActionListener(new ActionListener(){
             public void actionPerformed(ActionEvent e){
